@@ -1,0 +1,121 @@
+<html>
+	<head>
+		<title>Caesar/Vigenere</title>
+		<script type="text/JavaScript" src="script.js"></script>
+	</head>
+
+	<body>
+		<table width=100%>
+			<tr valign="top" align="center">
+				<td width=50% align="left">
+					<h1 align="center">
+					Шифр Цезаря
+					</h1>
+					<form name="C">
+						<table>
+							<tr>
+								<strong>
+										Входные данные
+								</strong>
+								<hr>
+								<td width=50% align="left">
+									<textarea name="input" cols="35" rows="5" wrap="virtual"></textarea> 
+									<br>
+									<input type="file" onChange="readfile(this.files[0], C.input)"></input>
+								</td>
+								<td>
+									
+								</td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<strong>
+										Ключ
+								</strong>
+								<hr>
+								<td width=50% align="left">
+									<textarea name="key" cols="35" rows="5" wrap="virtual"></textarea> 
+								</td>
+								<td>
+									
+								</td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<strong>
+										Результат
+								</strong>
+								<hr>
+								<td width=50% align="left">
+									<textarea name="output" cols="35" rows="5" wrap="virtual"></textarea> 
+								</td>
+								<td>
+									
+								</td>
+							</tr>
+						</table>
+						<input type="button" value="Зашифровать" onclick="main(0, 0);">
+						<input type="button" value="Расшифровать" onclick="main(0, 1);">
+					</form>
+				</td>
+				<td width=50% align="left">
+					<h1 align="center">
+					Шифр Виженера
+					</h1>
+					<form name="V">
+						<table>
+							<tr>
+								<strong>
+										Входные данные
+								</strong>
+								<hr>
+								<td width=50% align="left">
+									<textarea name="input" cols="35" rows="5" wrap="virtual"></textarea> 
+									<br>
+									<input type="file" onChange="readfile(this.files[0], V.input)"></input>
+								</td>
+								<td>
+									
+								</td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<strong>
+										Ключ
+								</strong>
+								<hr>
+								<td width=50% align="left">
+									<textarea name="key" cols="35" rows="5" wrap="virtual"></textarea>
+									<br>
+									<input type="file" onChange="readfile(this.files[0], V.key)"></input>
+								</td>
+								<td>
+									
+								</td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<strong>
+										Результат
+								</strong>
+								<hr>
+								<td width=50% align="left">
+									<textarea name="output" cols="35" rows="5" wrap="virtual"></textarea> 
+								</td>
+								<td>
+									
+								</td>
+							</tr>
+						</table>
+						<input type="button" value="Зашифровать" onclick="main(1, 0);">
+						<input type="button" value="Расшифровать" onclick="main(1, 1);">
+					</form>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
