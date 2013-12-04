@@ -106,56 +106,39 @@ function key_conv (key)
 	return key_out;
 }
  
-function Vigenere_enc(key, text)
+function Vigenere_factory(action_function)
 {
-	out = "";
-	var aCode = "a".charCodeAt(0);
-	var ACode = "A".charCodeAt(0);
-	var zCode = "z".charCodeAt(0);
-	var ZCode = "Z".charCodeAt(0);
-	var sCode;
-	var kCode;
-	for(i = 0, j = 0; i < text.length; i++)
-	{
-		sCode = text.charCodeAt(i);
-		kCode = key.charCodeAt(j);
-		if(sCode >= aCode && sCode <= zCode)
-			sCode += ACode - aCode;
-		
-		if(sCode >= ACode && sCode <= ZCode)
-		{
-			out += String.fromCharCode((sCode + kCode - 2*ACode) % 26 + ACode); 
-			j = (j + 1) % key.length;
-		}
-		else
-			out += text.charAt(i);
-    	}
-	return out;
+    return function(key, text){
+        out = "";
+        var aCode = "a".charCodeAt(0);
+        var ACode = "A".charCodeAt(0);
+        var zCode = "z".charCodeAt(0);
+        var ZCode = "Z".charCodeAt(0);
+        var sCode;
+        var kCode;
+        for(i = 0, j = 0; i < text.length; i++)
+        {
+            sCode = text.charCodeAt(i);
+            kCode = key.charCodeAt(j);
+            if(sCode >= aCode && sCode <= zCode)
+                sCode += ACode - aCode;
+            
+            if(sCode >= ACode && sCode <= ZCode)
+            {
+                out += action_function(sCode, kCode, ACode);
+                j = (j + 1) % key.length;
+            }
+            else
+                out += text.charAt(i);
+            }
+        return out;
+    }
 }
 
-function Vigenere_dec(key, text)
-{
-	out = "";
-	var aCode = "a".charCodeAt(0);
-	var ACode = "A".charCodeAt(0);
-	var zCode = "z".charCodeAt(0);
-	var ZCode = "Z".charCodeAt(0);
-	var sCode;
-	var kCode;
-	for(i = 0, j = 0; i < text.length; i++)
-	{
-		sCode = text.charCodeAt(i);
-		kCode = key.charCodeAt(j);
-		if(sCode >= aCode && sCode <= zCode)
-			sCode += ACode - aCode;
-		
-		if(sCode >= ACode && sCode <= ZCode)
-		{
-			out += String.fromCharCode((sCode - kCode + 26) % 26 + ACode); 
-			j = (j + 1) % key.length;
-		}
-		else
-			out += text.charAt(i);
-    	}
-	return out;
-}
+var Vigenere_enc = Vigenere_factory(function(sCode, kCode, ACode){
+    return String.fromCharCode((sCode + kCode - 2*ACode) % 26 + ACode); 
+}); 
+
+var Vigenere_dec = Vigenere_factory(function(sCode, kCode, ACode){
+    return String.fromCharCode((sCode - kCode + 26) % 26 + ACode); 
+});
